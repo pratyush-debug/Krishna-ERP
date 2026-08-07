@@ -1,22 +1,7 @@
-# Krishna ERP — SAP B1-Inspired Inventory Management Demo
+# GEPL RJCA — Inventory Management UAT
 
-This repository is a **dummy-data / UAT demonstration build** of the Inventory Management System defined in the master project document.
+SAP B1-inspired dummy/UAT Inventory Management application.
 
-## Demo scope represented
-- Dashboard and KPI drill-down
-- Company / branch / warehouse / rack / bin structure
-- Item Master, groups, UoM, barcodes and alternatives
-- Batch and serial tracking
-- Opening Balance
-- Goods Receipt / Goods Issue
-- Transfer Request / Inventory Transfer / In-Transit
-- Pick & Pack
-- Inventory Counting / Recount / Posting
-- Revaluation and valuation concepts
-- Stock overview, traceability and reports
-- Barcode / QR / mobile workflows
-- Roles, approvals and audit trail
+The deployed app uses dummy browser-local data only. It includes Item Master, Warehouse/Rack/Bin, Opening Balance, Goods Receipt, Goods Issue, Inventory Transfer, Physical Count, Inventory Posting, Stock Ledger, Reports, Audit Trail and a 100-entry UAT register.
 
-All quantities, values, batches, serials, documents, users and locations shown in the deployed demo are dummy data only.
-
-The deployed demo is intentionally self-contained so it can be opened without credentials or affecting live inventory data.
+No production stock is changed by this demo build.
