@@ -7,3 +7,4 @@ async function sbLoad(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/invento
 async function sbSave(data){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/inventory_app_state?id=eq.${STATE_ID}`,{method:'PATCH',headers:{...sbHeaders,'Prefer':'return=minimal'},body:JSON.stringify({data,updated_at:new Date().toISOString()})});if(!r.ok)throw new Error(await r.text())}catch(e){console.error('Supabase save failed',e)}}
 (async()=>{const cloud=await sbLoad();if(cloud&&window.d){window.d=cloud;if(typeof render==='function')render()}const original=window.save;if(typeof original==='function'){window.save=function(){localStorage.setItem(APP_KEY,JSON.stringify(window.d||d));sbSave(window.d||d);}}else{setInterval(()=>{try{const x=localStorage.getItem(APP_KEY);if(x)sbSave(JSON.parse(x))}catch(e){}},2500)}})();
 window.addEventListener('storage',e=>{if(e.key===APP_KEY&&e.newValue)try{sbSave(JSON.parse(e.newValue))}catch(_){}});
+console.info('Pratyush KR: Supabase sync enabled');
