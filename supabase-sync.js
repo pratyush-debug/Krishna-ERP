@@ -1,0 +1,9 @@
+const SUPABASE_URL='https://gwzlduzgawkbzyljeukv.supabase.co';
+const SUPABASE_KEY='sb_publishable_lDi-uyXOHRalVUHvN7GpWQ_blQuM9hk';
+const STATE_ID='main';
+const APP_KEY='pratyush_kr_full_v3';
+const sbHeaders={'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json'};
+async function sbLoad(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/inventory_app_state?id=eq.${STATE_ID}&select=data`,{headers:sbHeaders});if(!r.ok)throw new Error(await r.text());const rows=await r.json();if(rows[0]?.data&&Object.keys(rows[0].data).length){localStorage.setItem(APP_KEY,JSON.stringify(rows[0].data));return rows[0].data;}const local=localStorage.getItem(APP_KEY);if(local){await sbSave(JSON.parse(local));return JSON.parse(local)}}catch(e){console.error('Supabase load failed',e)}return null}
+async function sbSave(data){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/inventory_app_state?id=eq.${STATE_ID}`,{method:'PATCH',headers:{...sbHeaders,'Prefer':'return=minimal'},body:JSON.stringify({data,updated_at:new Date().toISOString()})});if(!r.ok)throw new Error(await r.text())}catch(e){console.error('Supabase save failed',e)}}
+(async()=>{const cloud=await sbLoad();if(cloud&&window.d){window.d=cloud;if(typeof render==='function')render()}const original=window.save;if(typeof original==='function'){window.save=function(){localStorage.setItem(APP_KEY,JSON.stringify(window.d||d));sbSave(window.d||d);}}else{setInterval(()=>{try{const x=localStorage.getItem(APP_KEY);if(x)sbSave(JSON.parse(x))}catch(e){}},2500)}})();
+window.addEventListener('storage',e=>{if(e.key===APP_KEY&&e.newValue)try{sbSave(JSON.parse(e.newValue))}catch(_){}});
