@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    { "source": "/", "destination": "/enhanced.html", "permanent": false }
+  "rewrites": [
+    { "source": "/", "destination": "/api/app" }
   ],
   "headers": [
     {
