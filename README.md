@@ -1,23 +1,22 @@
-# Krishna ERP — Inventory Management System
+# Krishna ERP — SAP B1-Inspired Inventory Management Demo
 
-SAP Business One-inspired Inventory Management System UAT/demo build.
+This repository is a **dummy-data / UAT demonstration build** of the Inventory Management System defined in the master project document.
 
-This repository currently contains **dummy/UAT data only** and is intended for development, testing and demonstration.
+## Demo scope represented
+- Dashboard and KPI drill-down
+- Company / branch / warehouse / rack / bin structure
+- Item Master, groups, UoM, barcodes and alternatives
+- Batch and serial tracking
+- Opening Balance
+- Goods Receipt / Goods Issue
+- Transfer Request / Inventory Transfer / In-Transit
+- Pick & Pack
+- Inventory Counting / Recount / Posting
+- Revaluation and valuation concepts
+- Stock overview, traceability and reports
+- Barcode / QR / mobile workflows
+- Roles, approvals and audit trail
 
-## Current implemented phases
+All quantities, values, batches, serials, documents, users and locations shown in the deployed demo are dummy data only.
 
-- INV-01 Foundation
-- INV-02 Item Master Foundation
-
-## Stack
-
-React + TypeScript + Vite + Tailwind + Supabase PostgreSQL/Auth.
-
-## Run
-
-```bash
-npm install
-npm run dev
-```
-
-The application automatically runs in Demo Mode when Supabase environment variables are not configured.
+The deployed demo is intentionally self-contained so it can be opened without credentials or affecting live inventory data.
