@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pratyush KR Inventory UAT</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f4f7fb}
+    #appFrame{border:0;width:100%;height:100%;display:block;background:#f4f7fb}
+  </style>
+</head>
+<body>
+  <iframe id="appFrame" src="/index.html" title="Pratyush KR Inventory UAT"></iframe>
+  <script>
+    const frame = document.getElementById('appFrame');
+    frame.addEventListener('load', () => {
+      try {
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        doc.title = 'Pratyush KR Inventory UAT';
+        const brand = doc.querySelector('.brand b');
+        if (brand) brand.textContent = 'Pratyush KR';
+      } catch (e) {
+        console.warn('Brand update skipped', e);
+      }
+    });
+  </script>
+</body>
+</html>
