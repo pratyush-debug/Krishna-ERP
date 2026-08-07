@@ -1,0 +1,30 @@
+name: Wire Supabase Sync
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'supabase-sync.js'
+permissions:
+  contents: write
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject sync script
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          tag='<script src="supabase-sync.js"></script>'
+          if tag not in s:
+              s=s.replace('</body>',tag+'</body>')
+              p.write_text(s)
+          PY
+      - name: Commit change
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add index.html
+          git diff --cached --quiet || (git commit -m 'Wire app state to Supabase' && git push)
